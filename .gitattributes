@@ -1,0 +1,7 @@
+# Keep LF for all Python scripts
+*.py text eol=lf
+
+# Optional: force shell scripts and config files to LF too
+*.sh text eol=lf
+*.cfg text eol=lf
+*.ini text eol=lf
