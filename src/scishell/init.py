@@ -4,7 +4,7 @@
 #                                    \_____/                                  #
 #                                ─── SciShell ───                             #
 #                                                                             #
-#    __init__.py                                                              #
+#    preloop.py                                                               #
 #                                                                             #
 #    By: Fuyugi <github.com/Fuyugi-LS>                                        #
 #                                                                             #
@@ -14,15 +14,13 @@
 #    © CC0 2025                                                               #
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
-import scishell.preloop as preloop  # type: ignore
-import scishell.shexit as shexit  # type: ignore
-import scishell.default as default  # type: ignore
-import scishell.datashell as datashell  # type: ignore
-import scishell.examshell as examshell  # type: ignore
-import scishell.examset as examset  # type: ignore
-import scishell.init as init  # type: ignore
+from utils.stddata import get_database_connection
 
-__all__ = (
-    'preloop', 'shexit', 'default', 'datashell', 'examshell', 'examset',
-    'init'
-    )  # type: ignore
+
+class __SERVICE__:
+    pass
+
+
+def execute() -> None:
+    database = get_database_connection()
+    database.close()

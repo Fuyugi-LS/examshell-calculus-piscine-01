@@ -15,15 +15,19 @@
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
 import json
+from typing import Any
+import sqlite3
 from typing import Optional, TextIO
 from utils import path
-from typing import Any
+from utils.globals import *
+
 
 class __SERVICE__:
     pass
 
 
-def shellfetch_json(filename: str, name: str) -> str | None:  # type: ignore # ignore
+def shellfetch_json(filename: str,
+                    name: str) -> str | None:  # type: ignore # ignore
     out = None
     f: Optional[TextIO] = None
     try:
@@ -53,3 +57,8 @@ def shellfetch_dict_json(filename: str, name: str) -> dict[Any, Any] | None:
         if f is not None:
             f.close()
         return out
+
+
+def get_database_connection() -> sqlite3.Connection:
+    out = sqlite3.connect(path.root(isglobal=False) + _DATABASE_FILENAME_)
+    return out

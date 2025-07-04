@@ -61,7 +61,7 @@
  [],
  False,
  False,
- 1751625844,
+ 1751639068,
  [('run.exe',
    'C:\\Users\\Fuyugi\\work\\refac_scishell\\.venv\\Lib\\site-packages\\PyInstaller\\bootloader\\Windows-64bit-intel\\run.exe',
    'EXECUTABLE')],

@@ -23,6 +23,7 @@ class __MAIN__(cmd.Cmd):
 
     def preloop(self) -> None:
         preloop.execute()
+        self.onecmd('init')
 
     def default(self, line: str) -> None:
         get = (line,)
@@ -42,6 +43,9 @@ class __MAIN__(cmd.Cmd):
     def do_examset(self, _) -> None:
         examset.execute()
 
+    def do_init(self, _) -> None:
+        init.execute()
+
     def help_datashell(self) -> None:
         pass
 
@@ -49,4 +53,7 @@ class __MAIN__(cmd.Cmd):
         pass
 
     def help_examset(self) -> None:
+        pass
+
+    def help_init(self, _) -> None:
         pass

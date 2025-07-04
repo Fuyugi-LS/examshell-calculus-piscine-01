@@ -2,14 +2,11 @@
     "introduction": "=== Welcome to DataShell ===\nType 'exit' to quit\n---------------------------",
     "exit": "Shutting down DataShell...",
     "not_found": "Command not found: {}",
-    "schema":
-    {
-        "alias": "CREATE TABLE IF NOT EXISTS alias (\n    name TEXT PRIMARY KEY,\n    cmd TEXT\n);"
-    },
     "sqlcmd":
     {
         "alias":
         {
+            "gen": "CREATE TABLE IF NOT EXISTS alias (\n    name TEXT PRIMARY KEY,\n    cmd TEXT\n);",
             "select": "SELECT * FROM alias WHERE name = ?;",
             "insert": "INSERT OR REPLACE INTO alias (name, cmd) VALUES (?, ?);",
             "delete": "DELETE FROM alias WHERE name = ?;"

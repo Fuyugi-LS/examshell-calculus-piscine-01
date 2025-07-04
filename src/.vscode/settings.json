@@ -12,13 +12,19 @@
         "dist": true,
         "program_file": false,
         "datashell": false,
-        "examset": false,
-        "examshell": false,
+        "examset": true,
+        "examshell": true,
         "scishell": true,
-        "utils": true,
+        "utils": false,
         "__init__.py": true,
         "main.py": false,
-        "main.spec": false
+        "main.spec": false,
+        "program_file/examshell.json": false,
+        "**/examshell.json": false,
+        "program_file/*.json": false,
+        "program_file/*.*": false,
+        "examshell.json": false,
+        "**/*.json": false
     },
     "explorerExclude.backup": {}
 }

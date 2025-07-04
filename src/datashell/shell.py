@@ -32,3 +32,9 @@ class __MAIN__(cmd.Cmd):
     def do_exit(self, _) -> bool:
         out = shexit.execute
         return out()
+
+    def alias(self, args: str) -> None:
+        alias.execute()
+
+    def help_alias(self, args: str) -> None:
+        pass

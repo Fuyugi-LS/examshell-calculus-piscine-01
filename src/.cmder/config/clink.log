@@ -1,20 +1,20 @@
-3cfc app_context::start_logger  503 ---- 2025/07/04 17:46:09.306 -------------------------------------------------
-3cfc app_context::start_logger  506 Host process is 'cmd.exe' (pid 15612)
-3cfc app_context::start_logger  510 DLL path is 'C:\Users\Fuyugi\work\refac_scishell\src\.cmder\vendor\clink'
-3cfc app_context::start_logger  513 DLL base is 00007FFA67150000
-3cfc app_context::start_logger  528 Windows version 10.0.19044 (x64)
-3cfc app_context::start_logger  530 Clink version 1.7.20.9f8e98 (x64)
-3cfc hook_setter::hook_setter  176 >>> Started hook transaction.
-3cfc hook_setter::attach_iat   351 Hooking SetEnvironmentVariableW in IAT for module 00007FF6976F0000 in 'api-ms-win-core-processenvironment-l1-1-0.dll' at 00007FF697723860 (value was 00007FFAE2622FC0).
-3cfc hook_setter::attach_iat   351 Hooking SetEnvironmentStringsW in IAT for module 00007FF6976F0000 in 'api-ms-win-core-processenvironment-l1-1-0.dll' at 00007FF697723888 (value was 00007FFAE261D090).
-3cfc hook_setter::attach_iat   351 Hooking WriteConsoleW in IAT for module 00007FF6976F0000 in 'api-ms-win-core-console-l1-1-0.dll' at 00007FF6977234F8 (value was 00007FFAE25C76D0).
-3cfc hook_setter::attach_iat   351 Hooking GetEnvironmentVariableW in IAT for module 00007FF6976F0000 in 'api-ms-win-core-processenvironment-l1-1-0.dll' at 00007FF697723880 (value was 00007FFAE25E5430).
-3cfc hook_setter::commit       227 <<< Hook transaction committed.
-3cfc initialise_clink          237 Inject completed at 2025/07/04 17:46:09.306
-3cfc hook_setter::hook_setter  176 >>> Started hook transaction.
-3cfc hook_setter::detach_iat   411 Unhooking GetEnvironmentVariableW in IAT for module 00007FF6976F0000 in 'api-ms-win-core-processenvironment-l1-1-0.dll' at 00007FFA6717CC90.
-3cfc hook_setter::commit       227 <<< Hook transaction committed.
-3cfc hook_setter::hook_setter  176 >>> Started hook transaction.
-3cfc hook_setter::attach_iat   351 Hooking ReadConsoleW in IAT for module 00007FF6976F0000 in 'api-ms-win-core-console-l1-1-0.dll' at 00007FF6977234E0 (value was 00007FFAE26D0A30).
-3cfc hook_setter::attach_iat   351 Hooking SetConsoleTitleW in IAT for module 00007FF6976F0000 in 'api-ms-win-core-console-l2-2-0.dll' at 00007FF697723558 (value was 00007FFAE2636930).
-3cfc hook_setter::commit       227 <<< Hook transaction committed.
+3330 app_context::start_logger  503 ---- 2025/07/04 21:28:09.270 -------------------------------------------------
+3330 app_context::start_logger  506 Host process is 'cmd.exe' (pid 13104)
+3330 app_context::start_logger  510 DLL path is 'C:\Users\Fuyugi\work\refac_scishell\src\.cmder\vendor\clink'
+3330 app_context::start_logger  513 DLL base is 00007FFA66F90000
+3330 app_context::start_logger  528 Windows version 10.0.19044 (x64)
+3330 app_context::start_logger  530 Clink version 1.7.20.9f8e98 (x64)
+3330 hook_setter::hook_setter  176 >>> Started hook transaction.
+3330 hook_setter::attach_iat   351 Hooking SetEnvironmentVariableW in IAT for module 00007FF6976F0000 in 'api-ms-win-core-processenvironment-l1-1-0.dll' at 00007FF697723860 (value was 00007FFAE2622FC0).
+3330 hook_setter::attach_iat   351 Hooking SetEnvironmentStringsW in IAT for module 00007FF6976F0000 in 'api-ms-win-core-processenvironment-l1-1-0.dll' at 00007FF697723888 (value was 00007FFAE261D090).
+3330 hook_setter::attach_iat   351 Hooking WriteConsoleW in IAT for module 00007FF6976F0000 in 'api-ms-win-core-console-l1-1-0.dll' at 00007FF6977234F8 (value was 00007FFAE25C76D0).
+3330 hook_setter::attach_iat   351 Hooking GetEnvironmentVariableW in IAT for module 00007FF6976F0000 in 'api-ms-win-core-processenvironment-l1-1-0.dll' at 00007FF697723880 (value was 00007FFAE25E5430).
+3330 hook_setter::commit       227 <<< Hook transaction committed.
+3330 initialise_clink          237 Inject completed at 2025/07/04 21:28:09.285
+3330 hook_setter::hook_setter  176 >>> Started hook transaction.
+3330 hook_setter::detach_iat   411 Unhooking GetEnvironmentVariableW in IAT for module 00007FF6976F0000 in 'api-ms-win-core-processenvironment-l1-1-0.dll' at 00007FFA66FBCC90.
+3330 hook_setter::commit       227 <<< Hook transaction committed.
+3330 hook_setter::hook_setter  176 >>> Started hook transaction.
+3330 hook_setter::attach_iat   351 Hooking ReadConsoleW in IAT for module 00007FF6976F0000 in 'api-ms-win-core-console-l1-1-0.dll' at 00007FF6977234E0 (value was 00007FFAE26D0A30).
+3330 hook_setter::attach_iat   351 Hooking SetConsoleTitleW in IAT for module 00007FF6976F0000 in 'api-ms-win-core-console-l2-2-0.dll' at 00007FF697723558 (value was 00007FFAE2636930).
+3330 hook_setter::commit       227 <<< Hook transaction committed.

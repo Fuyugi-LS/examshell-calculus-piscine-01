@@ -59,3 +59,8 @@ def examshell(isglobal: bool):
 def program_file(isglobal: bool):
     out = __SERVICE__.getpath
     return out(isglobal, 'program_file')
+
+
+def root(isglobal: bool):
+    out = __SERVICE__.getpath
+    return out(isglobal, '../..')

@@ -16,5 +16,8 @@
 
 _L_PROGRAM_FILE_ = '../'
 _G_PROGRAM_FILE_ = ''
+_DATABASE_FILENAME_ = 'database.db'
 
-__all__ = ('_L_PROGRAM_FILE_', '_G_PROGRAM_FILE_')  # type: ignore
+__all__ = (
+    '_L_PROGRAM_FILE_', '_G_PROGRAM_FILE_', '_DATABASE_FILENAME_'
+    )  # type: ignore

@@ -24,7 +24,7 @@ class __SERVICE__:
 def execute(get: tuple[str]) -> None:
     out = datashell.fetch_cmd("not_found")
     try:
-        pass #fetchalias
+        pass  # fetchalias
     except Exception as _:
         if isinstance(out, str):
             out = out.format(*get)
