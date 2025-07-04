@@ -14,14 +14,8 @@
 #    © CC0 2025                                                               #
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
-from stddb import init_database
-from wrapper.mode import InitMode
-
-
-def main() -> None:
-    init_database()
-    InitMode().cmdloop()
+from scishell.shell import __MAIN__ as main
 
 
 if __name__ == '__main__':
-    main()
+    main().cmdloop()

@@ -1,0 +1,5 @@
+{
+    "introduction": "=== Welcome to Examset===\nType 'exit' to quit\n---------------------------",
+    "exit": "Shutting down Examset...",
+    "not_found": "Command not found: {}"
+}

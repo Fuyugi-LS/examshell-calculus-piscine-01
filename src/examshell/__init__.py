@@ -13,3 +13,9 @@
 #                                                                             #
 #    © CC0 2025                                                               #
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
+import examshell.preloop as preloop  # type: ignore
+import examshell.shexit as shexit  # type: ignore
+import examshell.default as default  # type: ignore
+
+__all__ = ('preloop', 'shexit', 'default')  # type: ignore

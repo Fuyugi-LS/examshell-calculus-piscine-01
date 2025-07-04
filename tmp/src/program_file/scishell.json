@@ -1,6 +1,0 @@
-{
-    "introduction": "SciShell Version 0.01\nAuthor: Fuyugi-LS\nFor data: TYPE datashell\nFor exam: TYPE examshell",
-    "exit": "EXIT SciShell",
-    "datashell": "Fizz",
-    "examshell": "Buzz"
-}

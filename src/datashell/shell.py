@@ -15,71 +15,20 @@
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
 import cmd
-import datashell.pharser as pharser
-from stddb import DataShell as Data
-from stddb import alias as method_alias
+from datashell import *
 
 
-class DataShell(cmd.Cmd):
-    prompt = "[DATA]$ "
+class __MAIN__(cmd.Cmd):
+    prompt = '\033[033mDATASHELL/$ \033[00m'
 
-    def preloop(self):
-        print(Data().introduction)
+    def preloop(self) -> None:
+        preloop.execute()
 
-    def do_exit(self, _):
-        print(Data().exit)
-        return True
+    def default(self, line: str) -> None:
+        get = (line,)
+        out = default.execute
+        out(get)
 
-    def default(self, line):
-        try:
-            self.onecmd(pharser.alias.run_pharser(line))
-        except Exception as _:
-            print(f"Unknown command: '{line}'")
-
-    def do_alias(self, args):
-        args = pharser.alias.pharser(args)
-        if (args is False
-            or len(args["name"].strip()) == 0
-                or len(args["cmd"].strip()) == 0):
-            print(Data.alias["err"])
-            return
-        method_alias.insert(args)
-        print((Data.alias["success"]).format
-              (args["name"].strip(), args["cmd"].strip()))
-
-    def do_unalias(self, args):
-        args = pharser.unalias.pharser(args)
-        try:
-            if args is False or len(args) == 0:
-                raise Exception
-            method_alias.delete(args)
-            print(Data.unalias["success"].format(args))
-        except Exception as _:
-            print(Data.unalias["err"])
-
-    def do_dataset(self, args):
-        pass
-
-    def do_dataset(self, args):
-        pass
-
-    def do_rm(self, args):
-        pass
-
-    def do_ls(self, args):
-        pass
-
-    def do_open(self, args):
-        pass
-
-    def do_edit(self, args):
-        pass
-
-    def do_close(self, args):
-        pass
-
-    def do_touch(self, args):
-        pass
-
-    def do_examset(self, args):
-        pass
+    def do_exit(self, _) -> bool:
+        out = shexit.execute
+        return out()

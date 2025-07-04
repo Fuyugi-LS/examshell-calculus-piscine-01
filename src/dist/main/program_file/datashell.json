@@ -1,0 +1,28 @@
+{
+    "introduction": "=== Welcome to DataShell ===\nType 'exit' to quit\n---------------------------",
+    "exit": "Shutting down DataShell...",
+    "not_found": "Command not found: {}",
+    "schema":
+    {
+        "alias": "CREATE TABLE IF NOT EXISTS alias (\n    name TEXT PRIMARY KEY,\n    cmd TEXT\n);"
+    },
+    "sqlcmd":
+    {
+        "alias":
+        {
+            "select": "SELECT * FROM alias WHERE name = ?;",
+            "insert": "INSERT OR REPLACE INTO alias (name, cmd) VALUES (?, ?);",
+            "delete": "DELETE FROM alias WHERE name = ?;"
+        }
+    },
+    "alias":
+    {
+        "err": "[ERROR] Invalid alias format.\n[USAGE] alias <name>=<command>\nHint: alias must be a single argument, e.g. alias bio='set bio'\nType 'help alias' for more information.",
+        "success": "[OK] Alias '{}' added successfully. → '{}'"
+    },
+    "unalias":
+    {
+        "err": "[ERROR] Invalid unalias format.\n[USAGE] unalias <name>\nHint: you must supply the alias name to remove.\nType 'help unalias' for more information.",
+        "success": "[OK] Alias '{}' removed successfully."
+    }
+}
