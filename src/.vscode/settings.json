@@ -1,0 +1,24 @@
+{
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        "**/.cmder": true,
+        "**/.vscode": true,
+        ".vscode": true,
+        "build": true,
+        "dist": true,
+        "program_file": false,
+        "datashell": false,
+        "examset": false,
+        "examshell": false,
+        "scishell": true,
+        "utils": true,
+        "__init__.py": true,
+        "main.py": false,
+        "main.spec": false
+    },
+    "explorerExclude.backup": {}
+}
