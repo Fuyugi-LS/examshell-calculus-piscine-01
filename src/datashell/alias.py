@@ -4,7 +4,7 @@
 #                                    \_____/                                  #
 #                                ─── SciShell ───                             #
 #                                                                             #
-#    stddata.py                                                               #
+#    alias.py                                                                 #
 #                                                                             #
 #    By: Fuyugi <github.com/Fuyugi-LS>                                        #
 #                                                                             #
@@ -14,42 +14,12 @@
 #    © CC0 2025                                                               #
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
-import json
-from typing import Optional, TextIO
-from utils import path
-from typing import Any
+from program_file import datashell
+
 
 class __SERVICE__:
     pass
 
 
-def shellfetch_json(filename: str, name: str) -> str | None:  # type: ignore # ignore
-    out = None
-    f: Optional[TextIO] = None
-    try:
-        f = open(path.program_file(isglobal=False) + filename +
-                 '.json', 'r', encoding='utf-8')
-        tmp = json.load(f)
-        out = tmp[name]
-    except Exception as e:
-        print(e)
-    finally:
-        if f is not None:
-            f.close()
-        return out
-
-
-def shellfetch_dict_json(filename: str, name: str) -> dict[Any, Any] | None:
-    out = None
-    f: Optional[TextIO] = None
-    try:
-        f = open(path.program_file(isglobal=False) + filename +
-                 '.json', 'r', encoding='utf-8')
-        tmp = json.load(f)
-        out = tmp[name]
-    except Exception as e:
-        print(e)
-    finally:
-        if f is not None:
-            f.close()
-        return out
+def execute(get: tuple[str]) -> None:
+    raise SystemError("Currently working")

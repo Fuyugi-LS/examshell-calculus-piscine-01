@@ -24,3 +24,10 @@ class __SERVICE__:
 def fetch_cmd(name: str) -> str | None:
     out = stddata.shellfetch_json
     return out("datashell", name)
+
+def get_sqlcmd(cmd_name: str = "") -> str | None:
+    out = None
+    obj = stddata.shellfetch_dict_json("datashell", "sqlcmd")
+    if isinstance(obj, dict):
+        out = obj["sqlcmd"][cmd_name]
+    return out

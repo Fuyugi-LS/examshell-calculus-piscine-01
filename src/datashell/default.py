@@ -23,8 +23,13 @@ class __SERVICE__:
 
 def execute(get: tuple[str]) -> None:
     out = datashell.fetch_cmd("not_found")
-    if isinstance(out, str):
-        out = out.format(*get)
-        print(out)
-    else:
-        raise SystemError("Not possible string tuple.")
+    try:
+        pass #fetchalias
+    except Exception as _:
+        if isinstance(out, str):
+            out = out.format(*get)
+            print(out)
+        else:
+            raise SystemError("Not possible string tuple.")
+    finally:
+        return None
