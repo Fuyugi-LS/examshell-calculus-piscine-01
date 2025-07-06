@@ -6,20 +6,23 @@
     {
         "alias":
         {
-            "gen": "CREATE TABLE IF NOT EXISTS alias (\n    name TEXT PRIMARY KEY,\n    cmd TEXT\n);",
+            "gen": "CREATE TABLE IF NOT EXISTS alias (\n    name TEXT PRIMARY KEY,\n    cmd TEXT,\n    long TEXT,\n    isordered INTEGER,\n    isiterate INTEGER);",
             "select": "SELECT * FROM alias WHERE name = ?;",
-            "insert": "INSERT OR REPLACE INTO alias (name, cmd) VALUES (?, ?);",
+            "insert": "INSERT OR REPLACE INTO alias (name, cmd, long, isordered, isiterate) VALUES (?, ?, ?, ?, ?);",
             "delete": "DELETE FROM alias WHERE name = ?;"
         }
     },
-    "alias":
+    "stdio":
     {
-        "err": "[ERROR] Invalid alias format.\n[USAGE] alias <name>=<command>\nHint: alias must be a single argument, e.g. alias bio='set bio'\nType 'help alias' for more information.",
-        "success": "[OK] Alias '{}' added successfully. → '{}'"
-    },
-    "unalias":
-    {
-        "err": "[ERROR] Invalid unalias format.\n[USAGE] unalias <name>\nHint: you must supply the alias name to remove.\nType 'help unalias' for more information.",
-        "success": "[OK] Alias '{}' removed successfully."
+        "alias":
+        {
+            "err": "[ERROR] Invalid alias format.\n[USAGE] alias <name>=<command>\nHint: alias must be a single argument, e.g. alias bio='set bio'\nType 'help alias' for more information.",
+            "success": "[OK] Alias '{}' added successfully. → '{}'"
+        },
+        "unalias":
+        {
+            "err": "[ERROR] Invalid unalias format.\n[USAGE] unalias <name>\nHint: you must supply the alias name to remove.\nType 'help unalias' for more information.",
+            "success": "[OK] Alias '{}' removed successfully."
+        }
     }
 }

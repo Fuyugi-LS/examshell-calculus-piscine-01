@@ -76,7 +76,7 @@ class __SERVICE__:
             get = split(args)
             if len(get) < 3:
                 raise ValueError()
-            if get[1][-1] == 'd':
+            if get[1][-1] == 'd' and get[1][0] == '-':
                 raise ValueError()
             if not get[1] in flags:
                 get = get[:1] + ['--default',] + get[1:]
@@ -85,11 +85,17 @@ class __SERVICE__:
             elif len(get[1]) < 3 and get[2] in extra_order_flags:
                 get[1] = "{}o".format(get[1])
                 get = get[:2] + get[3:]
-            elif len(get[1]) >= 3 and get[1][0] == '-' and get[1] != '--default' and get[2] in extra_order_flags:
+            elif (len(get[1]) > 3
+                  and get[1][0] == '-'
+                  and get[1] != '--default'
+                  and get[2] in extra_order_flags):
                 get = get[:2] + ['@o'] + get[3:]
-            elif len(get[1]) >= 3 and get[1][0] == '-' and get[1] != '--default' and not get[2] in extra_order_flags and get[2][0] == '-':
+            elif (len(get[1]) > 3
+                  and get[1][0] == '-'
+                  and get[1] != '--default'
+                  and not get[2] in extra_order_flags
+                  and not get[2][0] == '-'):
                 get = get[:2] + ['@d'] + get[2:]
-            print(get)
             if len(get[1]) == 3:
                 get = get[:1] + [get[1][:2]] + ['@' + get[1]
                                                          [2]] + get[2:]
@@ -100,24 +106,25 @@ class __SERVICE__:
             parse.add_argument('--default', nargs=2, default=[])
             parse.add_argument('-p', '--parameter', nargs=3, default=[])
             parse.add_argument('-r', '--reformat', nargs=3, default=[])
-            print(get[1:])
             out = parse.parse_args(get[1:])
-        except (ValueError, SystemExit) as e:
-            print(e)
+        except (ValueError, SystemExit) as _:
             out = None
         finally:
             return out
 
     @staticmethod
     def checkiterate(ch: str) -> tuple[str, Optional[bool]]:
+        flags = ('-p', '-r', '-po', '-ro', '--parameter', '--reformat')
         out: tuple[str, Optional[bool]] = ("", None)
         get = split(ch)
-        isiterate = "-i" in get[0] or '--iterate' in get[0]
+        isiterate = "-i" == get[0] or '--iterate' == get[0]
         if isiterate:
             nmsg = get[1:]
             dmsg = map(quote, nmsg)
             msg = " ".join(dmsg)
             out = (msg, isiterate)
+        elif (not get[0] in flags) and get[0][0] == '-':
+            raise ValueError()
         else:
             out = (ch, isiterate)
         return out
@@ -137,7 +144,7 @@ def _foreparse(ch: str) -> Optional[dict[Any, Any]]:
         return out
 
 
-def _create() -> None:  # type: ignore
+def _create() -> None:
     try:
         __SERVICE__.runner('gen')
     except Exception as e:

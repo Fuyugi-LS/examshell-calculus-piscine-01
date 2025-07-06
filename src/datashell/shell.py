@@ -19,7 +19,7 @@ from datashell import *
 
 
 class __MAIN__(cmd.Cmd):
-    prompt = '\033[033mDATASHELL/$ \033[00m'
+    prompt = '\033[033mScishell/Datashell$ \033[00m'
 
     def preloop(self) -> None:
         preloop.execute()
