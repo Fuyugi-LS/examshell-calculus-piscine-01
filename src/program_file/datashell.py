@@ -37,3 +37,16 @@ def get_sqlcmd(implemented_feature: str = "",
     except Exception as _:
         out = None
     return out
+
+
+def get_output(implemented_feature: str = "",
+               log_name: str = "") -> str | None:
+    out = None
+    i = implemented_feature
+    try:
+        obj = stddata.shellfetch_dict_json("datashell", 'stdio')
+        if isinstance(obj, dict):
+            out = obj[i][log_name]
+    except Exception as _:
+        out = None
+    return out

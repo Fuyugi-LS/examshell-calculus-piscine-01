@@ -33,8 +33,8 @@ class __MAIN__(cmd.Cmd):
         out = shexit.execute
         return out()
 
-    def alias(self, args: str) -> None:
-        alias.execute()
+    def do_alias(self, args: str) -> None:
+        alias.create_alias(args)
 
     def help_alias(self, args: str) -> None:
         pass
