@@ -4,7 +4,7 @@
 #                                    \_____/                                  #
 #                                ─── SciShell ───                             #
 #                                                                             #
-#    shell.py                                                                 #
+#    echo.py                                                               #
 #                                                                             #
 #    By: Fuyugi <github.com/Fuyugi-LS>                                        #
 #                                                                             #
@@ -14,30 +14,9 @@
 #    © CC0 2025                                                               #
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
-import cmd
-from datashell import *
+class __SERVICE__:
+    pass
 
 
-class __MAIN__(cmd.Cmd):
-    prompt = '\033[033mScishell/Datashell$ \033[00m'
-
-    def preloop(self) -> None:
-        preloop.execute()
-
-    def default(self, line: str) -> None:
-        get = (line,)
-        out = default.execute
-        out(get)
-
-    def do_exit(self, _) -> bool:
-        out = shexit.execute
-        return out()
-
-    def do_alias(self, args: str) -> None:
-        alias.create_alias(args)
-
-    def do_echo(self, argv: str) -> None:
-        echo.execute(argv)
-
-    def help_alias(self, args: str) -> None:
-        pass
+def execute(argv: str) -> None:
+    print(argv)

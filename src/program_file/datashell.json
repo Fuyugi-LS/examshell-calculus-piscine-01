@@ -6,9 +6,9 @@
     {
         "alias":
         {
-            "gen": "CREATE TABLE IF NOT EXISTS alias (\n    name TEXT PRIMARY KEY,\n    cmd TEXT,\n    long TEXT,\n    isordered INTEGER,\n    isiterate INTEGER);",
-            "select": "SELECT * FROM alias WHERE name = ?;",
-            "insert": "INSERT OR REPLACE INTO alias (name, cmd, long, isordered, isiterate) VALUES (?, ?, ?, ?, ?);",
+            "gen": "CREATE TABLE IF NOT EXISTS alias (\n    name TEXT PRIMARY KEY,\n    cmd TEXT,\n    type TEXT,\n    isordered INTEGER,\n    isiterate INTEGER, \n    syscmd INTEGER);",
+            "select": "SELECT * FROM alias WHERE name LIKE ? || '%';",
+            "insert": "INSERT OR REPLACE INTO alias (name, cmd, type, isordered, isiterate, syscmd) VALUES (?, ?, ?, ?, ?, ?);",
             "delete": "DELETE FROM alias WHERE name = ?;"
         }
     },
@@ -17,7 +17,7 @@
         "alias":
         {
             "err": "[ERROR] Invalid alias format.\n[USAGE] alias <name>=<command>\nHint: alias must be a single argument, e.g. alias bio='set bio'\nType 'help alias' for more information.",
-            "success": "[OK] Alias '{}' added successfully. → '{}'"
+            "success": "[OK] Alias have been added successfully. '{}' → '{}'"
         },
         "unalias":
         {

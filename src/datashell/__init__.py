@@ -18,5 +18,6 @@ import datashell.preloop as preloop  # type: ignore
 import datashell.shexit as shexit  # type: ignore
 import datashell.default as default  # type: ignore
 import datashell.alias as alias  # type: ignore
+import datashell.echo as echo  # type: ignore
 
-__all__ = ('preloop', 'shexit', 'default', 'alias')  # type: ignore
+__all__ = ('preloop', 'shexit', 'default', 'alias', 'echo')  # type: ignore

@@ -15,6 +15,7 @@
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
 from program_file import datashell
+from datashell.alias import use_alias
 
 
 class __SERVICE__:
@@ -24,10 +25,12 @@ class __SERVICE__:
 def execute(get: tuple[str]) -> None:
     out = datashell.fetch_cmd("not_found")
     try:
-        pass  # fetchalias
+        use_alias(*get)
     except Exception as _:
         if isinstance(out, str):
-            out = out.format(*get)
+            val = get[0]
+            val = val.split()[0]
+            out = out.format(val)
             print(out)
         else:
             raise SystemError("Not possible string tuple.")

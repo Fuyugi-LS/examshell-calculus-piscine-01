@@ -16,12 +16,41 @@
 
 from typing import Callable, Optional, Any, Tuple
 import argparse
+import re
 from shlex import split, quote
 from program_file import datashell
 from utils.stddata import get_database_connection
 
 
+class AliasNotFoundError(Exception):
+    def __init__(self, alias_name: str):
+        self.alias_name = alias_name
+        super().__init__(f"Alias '{alias_name}' not found.")
+
+
+class MultipleMatchesError(Exception):
+    def __init__(
+            self, matches: list[str],
+            message: str = "Multiple commands found that match your input"
+            ):
+        self.matches = matches
+        super().__init__(f"{message}: {', '.join(matches)}")
+
+
 class __SERVICE__:
+    # general_function --------------------------------------------------------
+    @staticmethod
+    def splitter(get: str) -> str:
+        parts = split(get)
+        for i in range(0, len(parts)):
+            par = parts[i]
+            if not (
+                re.search(r'^["|\']', par)
+                or re.search(r'["|\']$', par)
+                    ):
+                parts[i] = "'" + par + "'"
+        return ' '.join(parts)
+
     @staticmethod
     def noop(*args: Any, **kwargs: Any) -> Tuple[Any, ...]:
         return ()
@@ -29,9 +58,11 @@ class __SERVICE__:
     @staticmethod
     def runner(operation: str, activate_function:
                Callable[..., Any] = noop,
-               parameters: Tuple[Any, ...] = ()) -> None:
+               parameters: Tuple[Any, ...] = ()
+               ) -> Optional[list[tuple[Any, ...]]]:
         a = activate_function
         db = get_database_connection()
+        out: Optional[list[tuple[Any, ...]]] = None
         try:
             rem = db.cursor()
             cmd = datashell.get_sqlcmd('alias', operation)
@@ -39,32 +70,51 @@ class __SERVICE__:
                 raise ValueError()
             fill = a(*parameters)
             rem.execute(cmd, fill)
+            if (operation == 'select'):
+                out = rem.fetchall()
             db.commit()
         except Exception as e:
             raise e
         finally:
             db.close()
+        return out
+    # eohf --------------------------------------------------------------------
+    # gen_alias ---------------------------------------------------------------
 
     @staticmethod
-    def get_default(parsed_args: list[Any]) -> tuple[Any, ...]:
-        out = (parsed_args[0], parsed_args[1], 'default', 0, 0)
+    def get_default(parsed_args: list[Any],
+                    syscmd: bool = False) -> tuple[Any, ...]:
+        if " " in parsed_args[0]:
+            raise ValueError("Forbidden control structure")
+        parsed_args[0] = __SERVICE__.splitter(parsed_args[0])
+        out = (parsed_args[0], parsed_args[1], 'default', 0, 0,
+               syscmd)
         return out
 
     @staticmethod
-    def get_params(parsed_args: list[Any], isiterate: bool) -> tuple[Any, ...]:
+    def get_params(parsed_args: list[Any],
+                   isiterate: bool, syscmd: bool = False) -> tuple[Any, ...]:
         isorder = False
         if parsed_args[0] == '@o':
             isorder = True
-        out = (parsed_args[1], parsed_args[2], 'parameter', isorder, isiterate)
+        if " " in parsed_args[1]:
+            raise ValueError("Forbidden control structure")
+        parsed_args[1] = __SERVICE__.splitter(parsed_args[1])
+        out = (parsed_args[1], parsed_args[2], 'parameter', isorder, isiterate,
+               syscmd)
         return out
 
     @staticmethod
     def get_reformat(parsed_args: list[Any],
-                     isiterate: bool) -> tuple[Any, ...]:
+                     isiterate: bool, syscmd: bool = False) -> tuple[Any, ...]:
         isorder = False
-        if parsed_args[0] == '-o' or parsed_args[0] == '--order':
+        if parsed_args[0] == '@o':
             isorder = True
-        out = (parsed_args[1], parsed_args[2], 'reformat', isorder, isiterate)
+        if "??" in parsed_args[1]:
+            raise ValueError("Forbidden control structure")
+        parsed_args[1] = __SERVICE__.splitter(parsed_args[1])
+        out = (parsed_args[1], parsed_args[2], 'reformat', isorder, isiterate,
+               syscmd)
         return out
 
     @staticmethod
@@ -128,6 +178,100 @@ class __SERVICE__:
         else:
             out = (ch, isiterate)
         return out
+    # eohf --------------------------------------------------------------------
+    # use_alias ---------------------------------------------------------------
+
+    @staticmethod
+    def __select_query(name: str) -> str:
+        return name
+
+    @staticmethod
+    def __get_matcmd__(argv: str) -> list[tuple[Any, ...]]:
+        query = split(argv)[0]
+        val = __SERVICE__.runner("select",
+                                 __SERVICE__.__select_query, (query,))
+        if val is None:
+            raise ValueError("cannot fetch query")
+        return val
+
+    @staticmethod
+    def get_matcmd_str(argv: list[str]) -> tuple[str, ...]:
+        return (argv[0],)
+
+    @staticmethod
+    def _hf_sort_data_(msg: tuple[Any, ...]) -> int:
+        out = -1
+        if msg[2] == 'reformat':
+            out = 1
+        else:
+            out = 2
+        return out
+
+    @staticmethod
+    def select_bestcmd(candidates: list[tuple[Any, ...]],
+                       argv: str) -> tuple[Any, ...]:
+        out: tuple[Any, ...] | None = None
+        candidates = sorted(candidates, key=__SERVICE__._hf_sort_data_)
+        for candidate in candidates:
+            if candidate[2] == 'reformat':
+                verdict = False
+                tcmds = re.split(r'\?\d*', candidate[0])
+                cmds: list[str] = []
+                for tc in tcmds:
+                    max = len(tc) - 1
+                    ttc = tc[1:max]
+                    if tc and ttc.strip() != "":
+                        cmds.append(tc)
+                # stnd = (re.findall(rf'^{re.escape(cmds[0])}', rf'{argv}')
+                #         and re.findall(rf'{re.escape(cmds[len(cmds) - 1])}$',
+                # rf'{argv}'))
+                # if not stnd:
+                #     # continue
+                orc = 0
+                tmp = argv
+                mem = True
+                for i in range(0, len(cmds)):
+                    cs = cmds[i]
+                    if cs in tmp:
+                        seq = tmp.find(cs) + len(cs)
+                        tmp = tmp[seq:]
+                        orc += 1
+                    else:
+                        mem = False
+                        break
+                if mem is False:
+                    continue
+                mem = True
+                verdict = mem
+                if verdict:
+                    out = candidate
+                    break
+            else:
+                sample = candidate[0]
+                if sample == re.split(r' ', argv)[0]:
+                    out = candidate
+                    break
+        if out is None:
+            raise SystemError("Not possible out variable None type error")
+        return out
+
+    @staticmethod
+    def fetchcmd(argv: str) -> str:
+        out: str = "__SYS__STDERR__"
+        fun = __SERVICE__.get_matcmd_str
+        argv = __SERVICE__.splitter(argv)
+        cmlist = __SERVICE__.runner('select', fun, (re.split(r' ', argv),))
+        if cmlist == [] or cmlist is None:
+            raise AliasNotFoundError(argv)
+        cmdlist: list[tuple[Any, ...]] = []
+        for i in range(0, len(cmlist)):
+            cur = list(cmlist[i])
+            cur[0] = __SERVICE__.splitter(cur[0])
+            cmdlist.append(tuple(cur))
+        best = __SERVICE__.select_bestcmd(cmdlist, argv)
+        out = best[0]
+        return out
+    # eohf --------------------------------------------------------------------
 
 
 def _foreparse(ch: str) -> Optional[dict[Any, Any]]:
@@ -152,7 +296,7 @@ def _create() -> None:
         raise SystemError('Not possible create alias error')
 
 
-def create_alias(ch: str) -> None:
+def create_alias(ch: str, sysalias: bool = False) -> None:
     _create()
     try:
         isindex = __SERVICE__.checkiterate(ch)[1]
@@ -166,21 +310,25 @@ def create_alias(ch: str) -> None:
             alias_name = get['default'][0]
             cmd = get['default'][1]
             __SERVICE__.runner('insert', __SERVICE__.get_default,
-                               (get['default'],))
+                               (get['default'], sysalias))
         elif get["parameter"]:
             alias_name = get['parameter'][1]
             cmd = get['parameter'][2]
             __SERVICE__.runner('insert', __SERVICE__.get_params,
-                               (get['parameter'], isindex))
+                               (get['parameter'], isindex, sysalias))
         elif get["reformat"]:
             alias_name = get['reformat'][1]
             cmd = get['reformat'][2]
             __SERVICE__.runner('insert', __SERVICE__.get_reformat,
-                               (get['reformat'], isindex))
+                               (get['reformat'], isindex, sysalias))
         msg = datashell.get_output('alias', 'success')
         if isinstance(msg, str):
-            print(msg.format(cmd, alias_name))
+            print(msg.format(alias_name, cmd))
     except Exception as _:
         print(datashell.get_output('alias', 'err'))
     finally:
         return
+
+
+def use_alias(argv: str) -> None:
+    print(__SERVICE__.fetchcmd(argv))
