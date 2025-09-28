@@ -1,0 +1,99 @@
+# WROTE /mnt/d/work/examshell/server/space/sample.f
+# metadata: lines=1 bytes=1 sha256=6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b
+=======================
+# WROTE /mnt/d/work/examshell/server/space/user.f
+# metadata: lines=1 bytes=1 sha256=6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b
+=======================
+$ /mnt/d/work/examshell/server/texmat /mnt/d/work/examshell/server/space/sample.f /mnt/d/work/examshell/server/space/user.f --strict -v --to object
+[parse] treating /mnt/d/work/examshell/server/space/sample.f as sympy expression
+[dump] wrote callable to space/sample.dill
+[parse] treating /mnt/d/work/examshell/server/space/user.f as sympy expression
+[dump] wrote callable to space/user.dill
+space/sample.dill
+space/user.dill
+(PosixPath('space/sample.dill'), PosixPath('space/user.dill'))
+=======================
+# UTEST RUN 1/10
+$ /mnt/d/work/examshell/server/utest /mnt/d/work/examshell/server/space/sample.dill /mnt/d/work/examshell/server/space/user.dill --prefix re --sample 50 | tee -a /mnt/d/work/examshell/server/space/deepthought
+Wrote 50 results to /mnt/d/work/examshell/server/space/resample and /mnt/d/work/examshell/server/space/reuser (seed=122276092)
+Wrote 50 results to /mnt/d/work/examshell/server/space/resample and /mnt/d/work/examshell/server/space/reuser (seed=122276092)
+=======================
+# DIFF AFTER UTEST RUN 1/10
+$ diff -u /mnt/d/work/examshell/server/space/resample /mnt/d/work/examshell/server/space/reuser
+=======================
+# UTEST RUN 2/10
+$ /mnt/d/work/examshell/server/utest /mnt/d/work/examshell/server/space/sample.dill /mnt/d/work/examshell/server/space/user.dill --prefix re --sample 50 | tee -a /mnt/d/work/examshell/server/space/deepthought
+Wrote 50 results to /mnt/d/work/examshell/server/space/resample and /mnt/d/work/examshell/server/space/reuser (seed=1388615869)
+Wrote 50 results to /mnt/d/work/examshell/server/space/resample and /mnt/d/work/examshell/server/space/reuser (seed=1388615869)
+=======================
+# DIFF AFTER UTEST RUN 2/10
+$ diff -u /mnt/d/work/examshell/server/space/resample /mnt/d/work/examshell/server/space/reuser
+=======================
+# UTEST RUN 3/10
+$ /mnt/d/work/examshell/server/utest /mnt/d/work/examshell/server/space/sample.dill /mnt/d/work/examshell/server/space/user.dill --prefix re --sample 50 | tee -a /mnt/d/work/examshell/server/space/deepthought
+Wrote 50 results to /mnt/d/work/examshell/server/space/resample and /mnt/d/work/examshell/server/space/reuser (seed=336921093)
+Wrote 50 results to /mnt/d/work/examshell/server/space/resample and /mnt/d/work/examshell/server/space/reuser (seed=336921093)
+=======================
+# DIFF AFTER UTEST RUN 3/10
+$ diff -u /mnt/d/work/examshell/server/space/resample /mnt/d/work/examshell/server/space/reuser
+=======================
+# UTEST RUN 4/10
+$ /mnt/d/work/examshell/server/utest /mnt/d/work/examshell/server/space/sample.dill /mnt/d/work/examshell/server/space/user.dill --prefix re --sample 50 | tee -a /mnt/d/work/examshell/server/space/deepthought
+Wrote 50 results to /mnt/d/work/examshell/server/space/resample and /mnt/d/work/examshell/server/space/reuser (seed=1815265863)
+Wrote 50 results to /mnt/d/work/examshell/server/space/resample and /mnt/d/work/examshell/server/space/reuser (seed=1815265863)
+=======================
+# DIFF AFTER UTEST RUN 4/10
+$ diff -u /mnt/d/work/examshell/server/space/resample /mnt/d/work/examshell/server/space/reuser
+=======================
+# UTEST RUN 5/10
+$ /mnt/d/work/examshell/server/utest /mnt/d/work/examshell/server/space/sample.dill /mnt/d/work/examshell/server/space/user.dill --prefix re --sample 50 | tee -a /mnt/d/work/examshell/server/space/deepthought
+Wrote 50 results to /mnt/d/work/examshell/server/space/resample and /mnt/d/work/examshell/server/space/reuser (seed=1745872649)
+Wrote 50 results to /mnt/d/work/examshell/server/space/resample and /mnt/d/work/examshell/server/space/reuser (seed=1745872649)
+=======================
+# DIFF AFTER UTEST RUN 5/10
+$ diff -u /mnt/d/work/examshell/server/space/resample /mnt/d/work/examshell/server/space/reuser
+=======================
+# UTEST RUN 6/10
+$ /mnt/d/work/examshell/server/utest /mnt/d/work/examshell/server/space/sample.dill /mnt/d/work/examshell/server/space/user.dill --prefix re --sample 50 | tee -a /mnt/d/work/examshell/server/space/deepthought
+Wrote 50 results to /mnt/d/work/examshell/server/space/resample and /mnt/d/work/examshell/server/space/reuser (seed=1982930560)
+Wrote 50 results to /mnt/d/work/examshell/server/space/resample and /mnt/d/work/examshell/server/space/reuser (seed=1982930560)
+=======================
+# DIFF AFTER UTEST RUN 6/10
+$ diff -u /mnt/d/work/examshell/server/space/resample /mnt/d/work/examshell/server/space/reuser
+=======================
+# UTEST RUN 7/10
+$ /mnt/d/work/examshell/server/utest /mnt/d/work/examshell/server/space/sample.dill /mnt/d/work/examshell/server/space/user.dill --prefix re --sample 50 | tee -a /mnt/d/work/examshell/server/space/deepthought
+Wrote 50 results to /mnt/d/work/examshell/server/space/resample and /mnt/d/work/examshell/server/space/reuser (seed=1099613175)
+Wrote 50 results to /mnt/d/work/examshell/server/space/resample and /mnt/d/work/examshell/server/space/reuser (seed=1099613175)
+=======================
+# DIFF AFTER UTEST RUN 7/10
+$ diff -u /mnt/d/work/examshell/server/space/resample /mnt/d/work/examshell/server/space/reuser
+=======================
+# UTEST RUN 8/10
+$ /mnt/d/work/examshell/server/utest /mnt/d/work/examshell/server/space/sample.dill /mnt/d/work/examshell/server/space/user.dill --prefix re --sample 50 | tee -a /mnt/d/work/examshell/server/space/deepthought
+Wrote 50 results to /mnt/d/work/examshell/server/space/resample and /mnt/d/work/examshell/server/space/reuser (seed=872019447)
+Wrote 50 results to /mnt/d/work/examshell/server/space/resample and /mnt/d/work/examshell/server/space/reuser (seed=872019447)
+=======================
+# DIFF AFTER UTEST RUN 8/10
+$ diff -u /mnt/d/work/examshell/server/space/resample /mnt/d/work/examshell/server/space/reuser
+=======================
+# UTEST RUN 9/10
+$ /mnt/d/work/examshell/server/utest /mnt/d/work/examshell/server/space/sample.dill /mnt/d/work/examshell/server/space/user.dill --prefix re --sample 50 | tee -a /mnt/d/work/examshell/server/space/deepthought
+Wrote 50 results to /mnt/d/work/examshell/server/space/resample and /mnt/d/work/examshell/server/space/reuser (seed=793369138)
+Wrote 50 results to /mnt/d/work/examshell/server/space/resample and /mnt/d/work/examshell/server/space/reuser (seed=793369138)
+=======================
+# DIFF AFTER UTEST RUN 9/10
+$ diff -u /mnt/d/work/examshell/server/space/resample /mnt/d/work/examshell/server/space/reuser
+=======================
+# UTEST RUN 10/10
+$ /mnt/d/work/examshell/server/utest /mnt/d/work/examshell/server/space/sample.dill /mnt/d/work/examshell/server/space/user.dill --prefix re --sample 50 | tee -a /mnt/d/work/examshell/server/space/deepthought
+Wrote 50 results to /mnt/d/work/examshell/server/space/resample and /mnt/d/work/examshell/server/space/reuser (seed=1364538084)
+Wrote 50 results to /mnt/d/work/examshell/server/space/resample and /mnt/d/work/examshell/server/space/reuser (seed=1364538084)
+=======================
+# DIFF AFTER UTEST RUN 10/10
+$ diff -u /mnt/d/work/examshell/server/space/resample /mnt/d/work/examshell/server/space/reuser
+=======================
+# RES FILES EXIST: resample=True, reuser=True
+=======================
+=========
+diff OK :D
