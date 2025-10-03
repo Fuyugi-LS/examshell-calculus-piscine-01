@@ -1,6 +1,0 @@
-{
-    "header": "\n\n███████╗ ██████╗██╗███████╗██╗  ██╗███████╗██╗     ██╗     \n██╔════╝██╔════╝██║██╔════╝██║  ██║██╔════╝██║     ██║     \n███████╗██║     ██║███████╗███████║█████╗  ██║     ██║     \n╚════██║██║     ██║╚════██║██╔══██║██╔══╝  ██║     ██║     \n███████║╚██████╗██║███████║██║  ██║███████╗███████╗███████╗\n╚══════╝ ╚═════╝╚═╝╚══════╝╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝",
-    "introduction": "\n         Empowering learning through smart shells\n\n  Version 0.01\n  Author: Fuyugi-LS\n\n  Modules:\n    [DATA]   DataShell  - Manage your data commands\n    [EXAM]   ExamShell  - Handle exam related features\n\n=========================================================\nType 'help' to see available commands.",
-    "exit": "EXIT SciShell",
-    "not_found": "Command not found: {}"
-}

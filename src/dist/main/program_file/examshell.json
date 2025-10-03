@@ -1,5 +1,0 @@
-{
-    "introduction": "=== Welcome to Examshell ===\nType 'exit' to quit\n---------------------------",
-    "exit": "Shutting down Examshell...",
-    "not_found": "Command not found: {}"
-}
